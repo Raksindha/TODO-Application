@@ -1,0 +1,53 @@
+#image{
+    background-image: url("../../assets/book.jpg");
+    background-size: cover;
+    /* background-position: center; */
+    height:100vh;
+    width: 100%;
+    /* position: fixed; */
+}
+#list{
+    text-align: center;
+    max-width: 700px; 
+    padding: 15%;
+    /* margin-left: 10%; */
+    font-size: 25px;
+}
+p{
+    font-family: "Protest Riot", sans-serif;
+    line-height: 35px;
+    font-size: 20px;
+    font-weight: 400;
+}
+h1{
+    padding: 15px;
+    font-weight: 700;
+    font-size: 40px;
+    font-family:"Protest Riot", sans-serif ;
+    color: #06352c;
+}
+button{
+    background-color: #128872; 
+    margin-left:5px;
+    /* margin-right: 20%; */
+    border: none;
+    border-radius: 30px;
+    transition: 0.2s;
+}
+button:hover{
+    color: #063c32;
+    background-color:  #78efd9;
+    transform: scale(1.1);
+}
+maticon{
+    font-size: 32px;
+}
+button{
+    width: 30%;
+    height: 40px;
+    font-size: large;
+    font-family: "Protest Riot", sans-serif;
+    font-weight: bold;
+}
+
+

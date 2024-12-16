@@ -1,0 +1,43 @@
+ 
+<div >
+    <mat-toolbar class="container">
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+            
+          </button>
+          <mat-menu #menu="matMenu">
+ 
+        <div id="sidenav">
+          <div routerLink="/main" class="menu-item">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+            <h4>Home</h4>
+          </div>
+
+          <div *ngIf="authService.loggedIn()" (click)="authService.logout()" class="menu-item">
+            <mat-icon aria-hidden="false" aria-label="Example logout icon">logout</mat-icon>
+            <h4>Logout</h4>
+        </div>
+    
+        <!-- Display login button when user is not logged in -->
+        <div *ngIf="!authService.loggedIn()" routerLink="/login" class="menu-item">
+            <mat-icon aria-hidden="false" aria-label="Example login icon">login</mat-icon>
+            <h4>Login</h4>
+        </div>
+        
+        
+          <div routerLink="/about" class="menu-item">
+            <mat-icon aria-hidden="false" aria-label="Example about us icon">list</mat-icon>
+            <h4>About Us</h4>
+          </div>
+        </div>
+      
+        </mat-menu>
+      <span id="todo">TODO-TRACKER</span>
+      <span class="example-spacer"></span>
+    
+     
+      
+    </mat-toolbar>
+  
+
+   

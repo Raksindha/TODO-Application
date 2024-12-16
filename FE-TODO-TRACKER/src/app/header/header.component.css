@@ -1,0 +1,83 @@
+.container{
+    
+  
+    background: transparent;
+    position: absolute;
+    background: #128872;
+    background: rgba(0,0,0,0);
+    font-size: 20px; 
+    height: 64px; 
+    padding: 0 16px; 
+    display: flex;
+    align-items: center; 
+    top: 0;
+    color: #0b0202;
+    width: 100%;
+    padding: 20px;
+} 
+
+#sidenav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    max-width: 100%; /* Ensure the container does not exceed the viewport width */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+  
+  .menu-item {
+    display: flex;
+    align-items: center;
+    width: 100%; /* Make sure each menu item takes full width */
+    padding: 10px 0;
+  }
+  
+  .menu-item mat-icon {
+    margin-right: 10px;
+  }
+  
+  .menu-item h4 {
+    margin: 0;
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide overflow text */
+    text-overflow: ellipsis; /* Add ellipsis for overflow text */
+  }
+  
+#user{
+    font-size: 50px;
+    margin-left: 45px;
+
+    
+}
+#todo{
+    width: 30%;
+    height: 40px;
+    font-family: "Protest Riot", sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 10px;
+   
+
+}
+
+body{
+    background-color: transparent;
+    background: transparent;
+}
+
+   #sidenav div {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+  }
+  #sidenav h4{
+    font-family:"Protest Riot", sans-serif;
+    transition: -0.2s;
+  }
+  /* #sidenav:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    
+}
+   */

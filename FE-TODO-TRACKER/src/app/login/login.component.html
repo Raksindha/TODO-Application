@@ -1,0 +1,41 @@
+<div id="background">
+    <div class="container">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="screen__content">
+          <h2>LOGIN</h2>
+          <div class="login__field">
+            <i class="login__icon fa fa-envelope"></i>
+            <input type="text" class="login__input" formControlName="email" placeholder="Email" required>
+            <div *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)">
+              <div class="text-danger" *ngIf="loginForm.get('email')?.errors?.['required']">Email is required</div>
+              <div class="text-danger" *ngIf="loginForm.get('email')?.errors?.['email']">Please enter a valid email</div>
+            </div>
+          </div>
+          <div class="login__field">
+            <i class="login__icon fa fa-lock"></i>
+            <input type="password" class="login__input" formControlName="password" placeholder="Password" required>
+            <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
+              <div class="text-danger" *ngIf="loginForm.get('password')?.errors?.['required']">Password is required</div>
+              <div class="text-danger" *ngIf="loginForm.get('password')?.errors?.['passwordInvalid']">Password is invalid</div>
+              <div class="text-danger" *ngIf="loginForm.get('password')?.errors?.['exceedsMaxLength']">Password must not exceed above 8 characters</div>
+              <div class="text-danger" *ngIf="loginForm.get('password')?.errors?.['noUpperCase']">Password must contain at least one uppercase letter</div>
+              <div class="text-danger" *ngIf="loginForm.get('password')?.errors?.['noLowerCase']">Password must contain at least one lowercase letter</div>
+              <div class="text-danger" *ngIf="loginForm.get('password')?.errors?.['noNumeric']">Password must contain at least one number</div>
+              <div class="text-danger" *ngIf="loginForm.get('password')?.errors?.['noSpecial']">Password must contain at least one special character</div>
+            </div>
+          </div>
+          <button class="button login__submit">
+            <span class="button__text">Login</span>
+            <i class="button__icon fa fa-chevron-right"></i>
+          </button>
+          <a class="signup" routerLink="/signin">Need an account? Signup</a>
+        </div>
+      </form>
+      <div class="screen__background">
+        <span class="screen__background__shape screen__background__shape4"></span>
+        <span class="screen__background__shape screen__background__shape3"></span>
+        <span class="screen__background__shape screen__background__shape2"></span>
+        <span class="screen__background__shape screen__background__shape1"></span>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,148 @@
+<div class="container">
+  <div *ngIf="userName" class="welcome-message">
+      <h2>Welcome, {{ userName }}!</h2>
+  </div>
+
+  <div class="search__field">
+    <input type="text" class="search__input" placeholder="Search" [(ngModel)]="searchTerm" (input)="onSearchInput()">
+  </div>
+
+  <div class="task-manager-box">
+    <div class="add-task-box">
+      <input type="text" class="task-input" placeholder="Add Task" [(ngModel)]="newTask.task">
+      <div class="task-icons">
+        <i class="fa fa-calendar" (click)="openDateDialog()"></i>
+        <i class="fa fa-tags" (click)="openCategoryDialog()"></i>
+        <i class="fa fa-flag" (click)="openPriorityDialog()"></i>
+        <i class="fa fa-check" (click)="addTask()"></i>
+      </div>
+    </div>
+  </div>
+
+ 
+  <div id="box">
+    <div *ngFor="let task of filteredTasks" class="task-box">
+      <div class="task-card"[class.edit-mode]="task.isEditMode">
+        <!-- Check if the task is in edit mode -->
+        <div *ngIf="task.isEditMode; else displayTask">
+          <input type="text" class="task-input" [(ngModel)]="task.task">
+          <mat-form-field class="task-category">
+            <mat-label>Category</mat-label>
+            <mat-select [(ngModel)]="task.category">
+              <mat-option value="All">All</mat-option>
+              <mat-option value="Health">Health</mat-option>
+              <mat-option value="Vacation">Vacation</mat-option>
+              <mat-option value="DailyRoutine">Daily Routine</mat-option>
+              <mat-option value="Weekend">Weekend</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <input type="date" [(ngModel)]="task.dueDate" class="deadline-calendar calendar-size">
+          <mat-form-field class="task-priority">
+            <mat-label>Priority</mat-label>
+            <mat-select [(ngModel)]="task.priority">
+              <mat-option value="Low">
+                <mat-icon style="color: green;">star</mat-icon> Low
+              </mat-option>
+              <mat-option value="Medium">
+                <mat-icon style="color: orange;">star</mat-icon> Medium
+              </mat-option>
+              <mat-option value="High">
+                <mat-icon style="color: red;">star</mat-icon> High
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!-- Save and Cancel buttons for updating or canceling edits -->
+          <button (click)="saveTask(task)" class="save">Save</button>
+          <button (click)="cancelEdit(task)"class="cancel">Cancel</button>
+        </div>
+        <ng-template #displayTask>
+          <div class="task-title">{{ task.task }}</div>
+          <div class="task-details">
+            <div>Deadline: {{ task.dueDate }}</div>
+            <div>Category: {{ task.category }}</div>
+            <div>Priority: 
+              <ng-container [ngSwitch]="task.priority">
+                <mat-icon *ngSwitchCase="'Low'" class="small-icon" style="color: green;">star</mat-icon>
+                <mat-icon *ngSwitchCase="'Medium'" class="small-icon" style="color: orange;">star</mat-icon>
+                <mat-icon *ngSwitchCase="'High'" class="small-icon" style="color: red;">star</mat-icon>
+              </ng-container>
+              {{ task.priority }}
+            </div>
+          </div>
+          <div class="task-icons">
+            <i class="edit-icon fa fa-pencil" (click)="toggleEditMode(task)"></i>
+            <i class="delete-icon fa fa-trash" (click)="deleteTask(task)"></i>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Date Dialog -->
+  <ng-template #dateDialog>
+    <div class="date">
+      <div class="inside">
+        <h4 mat-dialog-title>Select Deadline</h4>
+        <div class="day" mat-dialog-content>
+          <input type="date" [(ngModel)]="newTask.dueDate" class="deadline-calendar custom-calendar-size">
+        </div>
+        <div mat-dialog-actions>
+          <button mat-button (click)="dialogRef.close()">Close</button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- Category Dialog -->
+  <ng-template #categoryDialog>
+    <div class="category">
+      <div class="option">
+        <h4 mat-dialog-title>Select Category</h4>
+        <div mat-dialog-content>
+          <mat-form-field class="task-category">
+            <mat-label>Category</mat-label>
+            <mat-select [(ngModel)]="newTask.category">
+              <mat-option value="All">All</mat-option>
+              <mat-option value="Health">Health</mat-option>
+              <mat-option value="Vacation">Vacation</mat-option>
+              <mat-option value="DailyRoutine">Daily Routine</mat-option>
+              <mat-option value="Weekend">Weekend</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div mat-dialog-actions>
+          <button mat-button (click)="dialogRef.close()">Close</button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <!-- Priority Dialog -->
+  <ng-template #priorityDialog>
+    <div class="priority">
+      <div class="option">
+        <h4 mat-dialog-title>Select Priority</h4>
+        <div mat-dialog-content>
+          <mat-form-field class="task-priority">
+            <mat-label>Priority</mat-label>
+            <mat-select [(ngModel)]="newTask.priority">
+              <mat-option value="Low">
+                <mat-icon style="color: green;">star</mat-icon> Low
+              </mat-option>
+              <mat-option value="Medium">
+                <mat-icon style="color: orange;">star</mat-icon> Medium
+              </mat-option>
+              <mat-option value="High">
+                <mat-icon style="color: red;">star</mat-icon> High
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div mat-dialog-actions>
+          <button mat-button (click)="dialogRef.close()">Close</button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>
